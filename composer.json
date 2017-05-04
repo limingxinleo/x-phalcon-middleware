@@ -1,18 +1,23 @@
 {
-    "name": "myph/phalcon-middleware",
-    "description": "a phalcon middleware component",
-    "type": "library",
-    "license": "MIT",
-	"keywords": ["phalcon-middleware","phalcon"],
-	"version": "0.1",
-    "authors": [
-        {
-            "name": "liaoliang",
-            "email": "229694762@qq.com"
-        }
-    ],
-    "require": {},
-	"autoload": {
-		"psr-4":{"Myph\\": "src/"}
-	}
+  "name": "myph/phalcon-middleware",
+  "description": "a phalcon middleware component",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "phalcon-middleware",
+    "phalcon"
+  ],
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "liaoliang",
+      "email": "229694762@qq.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Myph\\": "src/"
+    }
+  }
 }
