@@ -1,0 +1,16 @@
+{
+    "name": "myph/phalcon-middleware",
+    "description": "a phalcon middleware component",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "liaoliang",
+            "email": "229694762@qq.com"
+        }
+    ],
+    "require": {},
+	"autoload": {
+		"psr-4":{"Myph\\": "src/"}
+	}
+}
