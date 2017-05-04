@@ -3,6 +3,8 @@
     "description": "a phalcon middleware component",
     "type": "library",
     "license": "MIT",
+	"keywords": ["phalcon-middleware","phalcon"],
+	"version": "0.1",
     "authors": [
         {
             "name": "liaoliang",
