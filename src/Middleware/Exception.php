@@ -1,6 +1,6 @@
 <?php
 
-namespace Myph\Middleware;
+namespace Xin\Phalcon\Middleware;
 
 use Phalcon\Exception as BashException;
 

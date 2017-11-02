@@ -1,8 +1,8 @@
 <?php
 
-namespace Myph\Middleware;
+namespace Xin\Phalcon\Middleware;
 
-use Myph\Middleware;
+use Xin\Phalcon\Middleware;
 use Phalcon\Di\Injectable;
 
 class Manager extends Injectable

@@ -1,6 +1,6 @@
 <?php
 
-namespace Myph;
+namespace Xin\Phalcon;
 
 use Phalcon\Di\Injectable;
 

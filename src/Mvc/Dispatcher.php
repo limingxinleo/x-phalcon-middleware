@@ -1,8 +1,10 @@
 <?php
 
-namespace Myph;
+namespace Xin\Phalcon\Mvc;
 
-class Dispatcher extends \Phalcon\Mvc\Dispatcher
+use Phalcon\Mvc\Dispatcher as MvcDispatcher;
+
+class Dispatcher extends MvcDispatcher
 {
     protected function _dispatch()
     {
@@ -230,7 +232,7 @@ class Dispatcher extends \Phalcon\Mvc\Dispatcher
 
             try {
                 // We update the latest value produced by the latest handler
-//                $this->_returnedValue = $this->callActionMethod($handler, $actionMethod, $params);
+                //                $this->_returnedValue = $this->callActionMethod($handler, $actionMethod, $params);
                 $middlewareManager = $dependencyInjector->getShared('middlewareManager');
                 $this->_returnedValue = $middlewareManager->handle($handler, $actionMethod, $params);
             } catch (\Exception $e) {
