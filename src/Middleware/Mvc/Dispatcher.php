@@ -2,6 +2,7 @@
 
 namespace Xin\Phalcon\Middleware\Mvc;
 
+use Phalcon\DiInterface;
 use Phalcon\Mvc\Dispatcher as MvcDispatcher;
 
 class Dispatcher extends MvcDispatcher
@@ -16,8 +17,12 @@ class Dispatcher extends MvcDispatcher
      */
     public function callActionMethod($handler, $actionMethod, array $params = array())
     {
+        /** @var DiInterface $dependencyInjector */
         $dependencyInjector = $this->_dependencyInjector;
-        $middlewareManager = $dependencyInjector->getShared('middlewareManager');
-        return $middlewareManager->handle($handler, $actionMethod, $params);
+        if ($dependencyInjector->has('middlewareManager')) {
+            $middlewareManager = $dependencyInjector->getShared('middlewareManager');
+            return $middlewareManager->handle($handler, $actionMethod, $params);
+        }
+        return parent::callActionMethod($handler, $actionMethod, $params);
     }
 }
