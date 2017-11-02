@@ -1,10 +1,21 @@
 <?php
 // +----------------------------------------------------------------------
-// | bootstrap.php [ WE CAN DO IT JUST THINK IT ]
+// | Test1Middleware.php [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-require __DIR__ . '/../vendor/autoload.php';
-define('TESTS_PATH', __DIR__);
+namespace Tests\App\Middleware;
+
+use Closure;
+use Xin\Phalcon\Middleware\Middleware;
+
+class Test1Middleware extends Middleware
+{
+    public function handle($request, Closure $next)
+    {
+        // TODO: Implement handle() method.
+    }
+
+}

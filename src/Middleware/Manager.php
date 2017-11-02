@@ -2,7 +2,7 @@
 
 namespace Xin\Phalcon\Middleware;
 
-use Xin\Phalcon\Middleware;
+use Xin\Phalcon\Middleware\Middleware;
 use Phalcon\Di\Injectable;
 
 class Manager extends Injectable

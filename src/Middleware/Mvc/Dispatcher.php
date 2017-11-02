@@ -1,6 +1,6 @@
 <?php
 
-namespace Xin\Phalcon\Mvc;
+namespace Xin\Phalcon\Middleware\Mvc;
 
 use Phalcon\Mvc\Dispatcher as MvcDispatcher;
 
