@@ -17,10 +17,21 @@
             "email": "715557344@qq.com"
         }
     ],
-    "require": {},
     "autoload": {
         "psr-4": {
             "Xin\\Phalcon\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "require": {
+        "php": ">=5.6",
+        "ext-phalcon": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7"
     }
 }
