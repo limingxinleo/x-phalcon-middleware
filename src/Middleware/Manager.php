@@ -2,7 +2,6 @@
 
 namespace Xin\Phalcon\Middleware;
 
-use Xin\Phalcon\Middleware\Middleware;
 use Phalcon\Di\Injectable;
 
 class Manager extends Injectable
@@ -38,7 +37,7 @@ class Manager extends Injectable
     public function set($aliases, $options = [])
     {
         if (!is_array($aliases) && !is_string($aliases)) {
-            throw new Exception('aliases must a string or array!');
+            throw new MiddlewareException('Aliases must a string or array!');
             return;
         }
         if (!empty($options)) {
@@ -115,7 +114,7 @@ class Manager extends Injectable
             while ($middleware = array_shift($this->activeMiddleware)) {
                 $middleware = new $middleware();
                 if (!($middleware instanceof Middleware)) {
-                    throw new Exception('Invalid a Middleware Handle!');
+                    throw new MiddlewareException('Invalid a Middleware Handle!');
                 }
                 $callback = function () use ($middleware, $callback) {
                     return call_user_func_array([$middleware, 'handle'], [$middleware, $callback]);
