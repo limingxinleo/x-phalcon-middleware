@@ -4,6 +4,7 @@ namespace Xin\Phalcon\Middleware\Mvc;
 
 use Phalcon\DiInterface;
 use Phalcon\Mvc\Dispatcher as MvcDispatcher;
+use Xin\Phalcon\Middleware\Manager;
 
 class Dispatcher extends MvcDispatcher
 {
@@ -21,7 +22,9 @@ class Dispatcher extends MvcDispatcher
         $dependencyInjector = $this->_dependencyInjector;
         if ($dependencyInjector->has('middleware')) {
             $middlewareManager = $dependencyInjector->getShared('middleware');
-            return $middlewareManager->handle($handler, $actionMethod, $params);
+            if ($middlewareManager instanceof Manager) {
+                return $middlewareManager->handle($handler, $actionMethod, $params);
+            }
         }
         return parent::callActionMethod($handler, $actionMethod, $params);
     }
