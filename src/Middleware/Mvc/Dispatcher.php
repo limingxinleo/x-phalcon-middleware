@@ -6,7 +6,7 @@ use Phalcon\Mvc\Dispatcher as MvcDispatcher;
 
 class Dispatcher extends MvcDispatcher
 {
-    protected function _dispatch()
+    public function dispatch()
     {
         $wasFresh = false;
         $dependencyInjector = $this->_dependencyInjector;

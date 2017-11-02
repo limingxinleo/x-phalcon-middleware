@@ -16,6 +16,9 @@ class Test1Middleware extends Middleware
     public function handle($request, Closure $next)
     {
         // TODO: Implement handle() method.
+        return $this->response->setJsonContent([
+            'success' => false,
+        ]);
     }
 
 }

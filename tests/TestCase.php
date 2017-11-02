@@ -12,11 +12,14 @@ use Phalcon\Di\FactoryDefault;
 use PHPUnit\Framework\TestCase as UnitTestCase;
 use Phalcon\Config;
 use Xin\Phalcon\Middleware\Manager;
-use Xin\Phalcon\Mvc\Dispatcher;
+use Xin\Phalcon\Middleware\Mvc\Dispatcher;
 
 class TestCase extends UnitTestCase
 {
     public $di;
+
+    /** @var Dispatcher $dispatcher */
+    public $dispatcher;
 
     public function setUp()
     {
@@ -28,7 +31,18 @@ class TestCase extends UnitTestCase
 
             return $middlewareManager;
         });
+
         //替换默认的dispatcher
-        $di->setShared('dispatcher', \Xin\Dispatcher::class);
+        $di->setShared('dispatcher', function () {
+
+            $dispatcher = new Dispatcher();
+            $dispatcher->setDefaultNamespace('Tests\App\Controllers');
+
+            return $dispatcher;
+        });
+
+        $this->di = $di;
+
+        $this->dispatcher = $di->getShared('dispatcher');
     }
 }

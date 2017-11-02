@@ -8,12 +8,43 @@
 // +----------------------------------------------------------------------
 namespace Tests\Middleware;
 
+use Phalcon\Http\Response;
 use Tests\TestCase;
 
 class BaseTest extends TestCase
 {
-    public function testExample()
+    public function testBase()
     {
-        $this->assertTrue(true);
+        $this->dispatcher->setControllerName('Index');
+        $this->dispatcher->setActionName('index');
+
+        $this->assertEquals('Tests\App\Controllers\IndexController', $this->dispatcher->getHandlerClass());
+        $this->assertEquals('indexAction', $this->dispatcher->getActionName() . $this->dispatcher->getActionSuffix());
+    }
+
+    public function testDispatch()
+    {
+        $this->dispatcher->setControllerName('Index');
+        $this->dispatcher->setActionName('index');
+
+        $obj = $this->dispatcher->dispatch();
+        /** @var Response $response */
+        $response = $obj->dispatcher->getReturnedValue();
+        $json = $response->getContent();
+        $result = json_decode($json, true);
+        $this->assertTrue($result['success']);
+    }
+
+    public function testMiddleware()
+    {
+        $this->dispatcher->setControllerName('Index');
+        $this->dispatcher->setActionName('test');
+
+        $obj = $this->dispatcher->dispatch();
+        /** @var Response $response */
+        $response = $obj->dispatcher->getReturnedValue();
+        $json = $response->getContent();
+        $result = json_decode($json, true);
+        $this->assertFalse($result['success']);
     }
 }
