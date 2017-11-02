@@ -180,7 +180,7 @@ class IndexController extends Controller
 {
     public function initialize()
     {
-        $this->middlewareManager->set([
+        $this->middleware->set([
             'four'
         ]);
     }
