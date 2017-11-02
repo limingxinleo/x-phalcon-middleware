@@ -33,4 +33,33 @@ class IndexController extends Controller
             'data' => ['action' => 'test']
         ]);
     }
+
+    /**
+     * @desc
+     * @author limx
+     * @return \Phalcon\Http\Response|\Phalcon\Http\ResponseInterface
+     * @Middleware('test2')
+     */
+    public function test2Action()
+    {
+        return $this->response->setJsonContent([
+            'success' => true,
+            'data' => ['action' => 'test2']
+        ]);
+    }
+
+    /**
+     * @desc
+     * @author limx
+     * @return \Phalcon\Http\Response|\Phalcon\Http\ResponseInterface
+     * @Middleware('test2')
+     * @Middleware('test3')
+     */
+    public function test3Action()
+    {
+        return $this->response->setJsonContent([
+            'success' => true,
+            'data' => ['action' => 'test2']
+        ]);
+    }
 }

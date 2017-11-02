@@ -22,7 +22,7 @@ class BaseTest extends TestCase
         $this->assertEquals('indexAction', $this->dispatcher->getActionName() . $this->dispatcher->getActionSuffix());
     }
 
-    public function testDispatch()
+    public function testNoMiddleware()
     {
         $this->dispatcher->setControllerName('Index');
         $this->dispatcher->setActionName('index');
@@ -35,7 +35,7 @@ class BaseTest extends TestCase
         $this->assertTrue($result['success']);
     }
 
-    public function testMiddleware()
+    public function testMiddlewareDeny()
     {
         $this->dispatcher->setControllerName('Index');
         $this->dispatcher->setActionName('test');
@@ -46,5 +46,33 @@ class BaseTest extends TestCase
         $json = $response->getContent();
         $result = json_decode($json, true);
         $this->assertFalse($result['success']);
+    }
+
+    public function testMiddlewarePass()
+    {
+        $this->dispatcher->setControllerName('Index');
+        $this->dispatcher->setActionName('test2');
+        $this->dispatcher->setParam('pass', true);
+
+        $obj = $this->dispatcher->dispatch();
+        /** @var Response $response */
+        $response = $obj->dispatcher->getReturnedValue();
+        $json = $response->getContent();
+        $result = json_decode($json, true);
+        $this->assertTrue($result['success']);
+    }
+
+    public function testMiddlewarePassMulti()
+    {
+        $this->dispatcher->setControllerName('Index');
+        $this->dispatcher->setActionName('test3');
+        $this->dispatcher->setParam('pass', true);
+
+        $obj = $this->dispatcher->dispatch();
+        /** @var Response $response */
+        $response = $obj->dispatcher->getReturnedValue();
+        $json = $response->getContent();
+        $result = json_decode($json, true);
+        $this->assertTrue($result['success']);
     }
 }

@@ -28,6 +28,8 @@ class TestCase extends UnitTestCase
             $middlewareManager = new Manager();
             //注册中间件
             $middlewareManager->add('test', \Tests\App\Middleware\Test1Middleware::class);
+            $middlewareManager->add('test2', \Tests\App\Middleware\Test2Middleware::class);
+            $middlewareManager->add('test3', \Tests\App\Middleware\Test3Middleware::class);
 
             return $middlewareManager;
         });
@@ -44,5 +46,7 @@ class TestCase extends UnitTestCase
         $this->di = $di;
 
         $this->dispatcher = $di->getShared('dispatcher');
+
+        FactoryDefault::setDefault($di);
     }
 }

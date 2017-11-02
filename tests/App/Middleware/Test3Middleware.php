@@ -9,12 +9,18 @@
 namespace Tests\App\Middleware;
 
 use Closure;
+use Phalcon\Di\FactoryDefault;
 use Xin\Phalcon\Middleware\Middleware;
 
-class Test1Middleware extends Middleware
+class Test3Middleware extends Middleware
 {
     public function handle($request, Closure $next)
     {
+        $pass = $this->dispatcher->getParam('pass');
+        if ($pass) {
+            return $next($request);
+        }
+
         return $this->response->setJsonContent([
             'success' => false,
         ]);

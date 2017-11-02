@@ -81,14 +81,23 @@ class Manager extends Injectable
         $aliases = [];
         $annotataionsService = $this->annotations;
         $controllerName = get_class($handler);
+
+        // 读取控制器上是否有Middleware注解
         $controllerAnnotations = $annotataionsService->get($controllerName)->getClassAnnotations();
         if ($controllerAnnotations && $controllerAnnotations->has('Middleware')) {
-            $aliases = $controllerAnnotations->get('Middleware')->getArguments() ?: [];
+            foreach ($controllerAnnotations->getAll('Middleware') as $controllerAnnotation) {
+                $aliases = array_merge($aliases, ($controllerAnnotation->getArguments() ?: []));
+            }
         }
+
+        // 读取方法上是否有Middleware注解
         $methodAnnotations = $annotataionsService->getMethod($controllerName, $actionMethod);
         if ($methodAnnotations && $methodAnnotations->has('Middleware')) {
-            $aliases = array_merge($aliases, ($methodAnnotations->get('Middleware')->getArguments() ?: []));
+            foreach ($methodAnnotations->getAll('Middleware') as $methodAnnotation) {
+                $aliases = array_merge($aliases, ($methodAnnotation->getArguments() ?: []));
+            }
         }
+
         if (!empty($aliases)) {
             $this->set($aliases);
         }
