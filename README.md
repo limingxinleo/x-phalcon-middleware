@@ -1,5 +1,9 @@
-# phalcon-midddleware
+# x-phalcon-middleware
 a phalcon middleware component
+
+## 感谢
+[https://github.com/shouhuyou/phalcon-midddleware.git](https://github.com/shouhuyou/phalcon-midddleware.git)
+
 ## 安装
 `composer require limingxinleo/x-phalcon-middleware`
 
