@@ -24,7 +24,7 @@ class TestCase extends UnitTestCase
     public function setUp()
     {
         $di = new FactoryDefault();
-        $di->setShared('middlewareManager', function () {
+        $di->setShared('middleware', function () {
             $middlewareManager = new Manager();
             //注册中间件
             $middlewareManager->add('test', \Tests\App\Middleware\Test1Middleware::class);

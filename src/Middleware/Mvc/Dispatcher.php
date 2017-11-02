@@ -19,8 +19,8 @@ class Dispatcher extends MvcDispatcher
     {
         /** @var DiInterface $dependencyInjector */
         $dependencyInjector = $this->_dependencyInjector;
-        if ($dependencyInjector->has('middlewareManager')) {
-            $middlewareManager = $dependencyInjector->getShared('middlewareManager');
+        if ($dependencyInjector->has('middleware')) {
+            $middlewareManager = $dependencyInjector->getShared('middleware');
             return $middlewareManager->handle($handler, $actionMethod, $params);
         }
         return parent::callActionMethod($handler, $actionMethod, $params);
