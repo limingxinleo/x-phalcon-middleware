@@ -120,3 +120,86 @@ class IndexController extends Controller
     }
 }
 ~~~
+
+## 中间件执行顺序
+中间件定义
+~~~
+class OneMiddleware extends Middleware
+{
+    public function handle($request, Closure $next)
+    {
+        echo 'One1' . PHP_EOL;
+        $response = $next($request);
+        echo 'One2' . PHP_EOL;
+        return $response;
+    }
+}
+
+class TwoMiddleware extends Middleware
+{
+    public function handle($request, Closure $next)
+    {
+        echo 'Two1' . PHP_EOL;
+        $response = $next($request);
+        echo 'Two2' . PHP_EOL;
+        return $response;
+    }
+}
+
+class ThreeMiddleware extends Middleware
+{
+    public function handle($request, Closure $next)
+    {
+        echo 'Three1' . PHP_EOL;
+        $response = $next($request);
+        echo 'Three2' . PHP_EOL;
+        return $response;
+    }
+}
+
+class FourMiddleware extends Middleware
+{
+    public function handle($request, Closure $next)
+    {
+        echo 'Four1' . PHP_EOL;
+        $response = $next($request);
+        echo 'Four2' . PHP_EOL;
+        return $response;
+    }
+}
+~~~
+
+使用如下
+~~~
+/**
+ * Class IndexController
+ * @package Tests\App\Controllers
+ * @Middleware('three')
+ */
+class IndexController extends Controller
+{
+    public function initialize()
+    {
+        $this->middlewareManager->set([
+            'four'
+        ]);
+    }
+    
+    /**
+     * @Middleware('one')
+     * @Middleware('two')
+     */
+    public function indexAction()
+    {
+        return $this->response->setJsonContent([
+            'success' => true,
+            'data' => ['action' => 'index']
+        ]);
+    }
+}
+~~~
+
+结果
+~~~
+Two1->One1->Three1->Four1->Four2->Three2->One2->Two2
+~~~

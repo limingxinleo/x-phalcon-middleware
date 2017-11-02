@@ -12,11 +12,14 @@ use Closure;
 use Phalcon\Di\FactoryDefault;
 use Xin\Phalcon\Middleware\Middleware;
 
-class Test3Middleware extends Middleware
+class SecondMiddleware extends Middleware
 {
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        // echo 'secondStart' . PHP_EOL;
+        $response = $next($request);
+        // echo 'secondEnd' . PHP_EOL;
+        return $response;
     }
 
 }

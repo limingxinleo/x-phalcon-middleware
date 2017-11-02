@@ -10,6 +10,11 @@ namespace Tests\App\Controllers;
 
 use Phalcon\Mvc\Controller;
 
+/**
+ * Class IndexController
+ * @package Tests\App\Controllers
+ * @Middleware('test3')
+ */
 class IndexController extends Controller
 {
     public function indexAction()

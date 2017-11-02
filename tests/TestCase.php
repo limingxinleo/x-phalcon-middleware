@@ -30,6 +30,8 @@ class TestCase extends UnitTestCase
             $middlewareManager->add('test', \Tests\App\Middleware\Test1Middleware::class);
             $middlewareManager->add('test2', \Tests\App\Middleware\Test2Middleware::class);
             $middlewareManager->add('test3', \Tests\App\Middleware\Test3Middleware::class);
+            $middlewareManager->add('abs', \Tests\App\Middleware\AbstractMiddleware::class);
+            $middlewareManager->add('second', \Tests\App\Middleware\SecondMiddleware::class);
 
             return $middlewareManager;
         });

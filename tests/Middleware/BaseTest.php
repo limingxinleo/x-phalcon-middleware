@@ -61,18 +61,4 @@ class BaseTest extends TestCase
         $result = json_decode($json, true);
         $this->assertTrue($result['success']);
     }
-
-    public function testMiddlewarePassMulti()
-    {
-        $this->dispatcher->setControllerName('Index');
-        $this->dispatcher->setActionName('test3');
-        $this->dispatcher->setParam('pass', true);
-
-        $obj = $this->dispatcher->dispatch();
-        /** @var Response $response */
-        $response = $obj->dispatcher->getReturnedValue();
-        $json = $response->getContent();
-        $result = json_decode($json, true);
-        $this->assertTrue($result['success']);
-    }
 }

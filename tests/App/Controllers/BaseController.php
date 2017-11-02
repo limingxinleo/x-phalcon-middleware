@@ -1,22 +1,26 @@
 <?php
 // +----------------------------------------------------------------------
-// | Test1Middleware.php [ WE CAN DO IT JUST THINK IT ]
+// | BaseController.php [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace Tests\App\Middleware;
+namespace Tests\App\Controllers;
 
-use Closure;
-use Phalcon\Di\FactoryDefault;
-use Xin\Phalcon\Middleware\Middleware;
+use Phalcon\Mvc\Controller;
 
-class Test3Middleware extends Middleware
+/**
+ * Class BaseController
+ * @package Tests\App\Controllers
+ * @Milldeware('abs')
+ */
+abstract class BaseController extends Controller
 {
-    public function handle($request, Closure $next)
+    public function initialize()
     {
-        return $next($request);
+        $this->middlewareManager->set([
+            'abs'
+        ]);
     }
-
 }
