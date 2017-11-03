@@ -16,7 +16,7 @@ class Dispatcher extends MvcDispatcher
      * @param array  $params
      * @return mixed
      */
-    public function callActionMethod($handler, $actionMethod, array $params = [])
+    public function callActionMethod($handler, $actionMethod, ?array $params = [])
     {
         /** @var DiInterface $dependencyInjector */
         $dependencyInjector = $this->_dependencyInjector;
