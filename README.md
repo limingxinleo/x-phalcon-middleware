@@ -10,7 +10,11 @@ a phalcon middleware component
 ## 配置
 添加服务
 ~~~php
-<?php 
+<?php
+ 
+use Xin\Phalcon\Middleware\Mvc\Dispatcher as MvcDispatcher;
+use Xin\Phalcon\Middleware\Mvc\Dispatcher71 as MvcDispatcher71;
+
 $di->setShared('middlewareManager', function () {
     $middlewareManager = new Manager();
     //注册中间件
@@ -24,7 +28,11 @@ $di->setShared('middlewareManager', function () {
 //替换默认的dispatcher
 $di->setShared('dispatcher', function () {
 
-    $dispatcher = new Dispatcher();
+    if (version_compare(PHP_VERSION, '7.1', '>')) {
+        $dispatcher = new MvcDispatcher71();
+    } else {
+        $dispatcher = new MvcDispatcher();
+    }
     $dispatcher->setDefaultNamespace('Tests\App\Controllers');
 
     return $dispatcher;
