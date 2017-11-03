@@ -6,7 +6,7 @@ use Phalcon\DiInterface;
 use Phalcon\Mvc\Dispatcher as MvcDispatcher;
 use Xin\Phalcon\Middleware\Manager;
 
-class Dispatcher extends MvcDispatcher
+class Dispatcher71 extends MvcDispatcher
 {
     /**
      * @desc   重写 callActionMethod 方法
