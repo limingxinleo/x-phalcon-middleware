@@ -19,5 +19,4 @@ class Test1Middleware extends Middleware
             'success' => false,
         ]);
     }
-
 }

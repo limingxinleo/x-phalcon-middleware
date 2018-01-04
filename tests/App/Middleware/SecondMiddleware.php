@@ -21,5 +21,4 @@ class SecondMiddleware extends Middleware
         // echo 'secondEnd' . PHP_EOL;
         return $response;
     }
-
 }

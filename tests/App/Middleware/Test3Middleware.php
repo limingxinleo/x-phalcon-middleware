@@ -18,5 +18,4 @@ class Test3Middleware extends Middleware
     {
         return $next($request);
     }
-
 }

@@ -6,7 +6,6 @@ use Phalcon\Di\Injectable;
 
 class Manager extends Injectable
 {
-
     protected $middlewares = [];
 
     protected $middlewareGroup = [];

@@ -38,7 +38,6 @@ class TestCase extends UnitTestCase
 
         //替换默认的dispatcher
         $di->setShared('dispatcher', function () {
-
             $dispatcher = new Dispatcher();
             $dispatcher->setDefaultNamespace('Tests\App\Controllers');
 

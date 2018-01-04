@@ -21,5 +21,4 @@ class AbstractMiddleware extends Middleware
         // echo 'AbsEnd' . PHP_EOL;
         return $response;
     }
-
 }

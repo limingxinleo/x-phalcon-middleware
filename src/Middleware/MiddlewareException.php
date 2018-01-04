@@ -6,5 +6,4 @@ use Phalcon\Exception as BaseException;
 
 class MiddlewareException extends BaseException
 {
-
 }
