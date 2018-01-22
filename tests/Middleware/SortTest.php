@@ -26,6 +26,17 @@ class SortTest extends TestCase
         $result = json_decode($json, true);
         $this->assertTrue($result['success']);
 
-        dd(SortClient::getInstance()->sortMiddlewareArray);
+        $this->assertEquals([
+            'abs.start',
+            'test3.start',
+            'sort1.start',
+            'sort2.start',
+            'sort3.start',
+            'sort3.end',
+            'sort2.end',
+            'sort1.end',
+            'test3.end',
+            'abs.end',
+        ], SortClient::getInstance()->sortMiddlewareArray);
     }
 }

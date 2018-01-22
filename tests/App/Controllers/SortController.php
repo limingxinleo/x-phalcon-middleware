@@ -17,7 +17,10 @@ class SortController extends BaseController
 {
     public function initialize()
     {
-        parent::initialize();
+        $this->middleware->set([
+            'abs',
+            'test3'
+        ]);
     }
 
     /**

@@ -110,7 +110,7 @@ class Manager extends Injectable
             return call_user_func_array([$handler, $actionMethod], $params);
         };
         if (!empty($this->activeMiddleware)) {
-            while ($middleware = array_shift($this->activeMiddleware)) {
+            while ($middleware = array_pop($this->activeMiddleware)) {
                 $middleware = new $middleware();
                 if (!($middleware instanceof Middleware)) {
                     throw new MiddlewareException('Invalid a Middleware Handle!');

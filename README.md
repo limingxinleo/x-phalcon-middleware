@@ -182,20 +182,21 @@ class FourMiddleware extends Middleware
 /**
  * Class IndexController
  * @package Tests\App\Controllers
- * @Middleware('three')
+ * @Middleware('sort1')
  */
 class IndexController extends Controller
 {
     public function initialize()
     {
         $this->middleware->set([
-            'four'
+            'abs',
+            'test3'
         ]);
     }
     
     /**
-     * @Middleware('one')
-     * @Middleware('two')
+     * @Middleware('sort2')
+     * @Middleware('sort3')
      */
     public function indexAction()
     {
@@ -209,5 +210,14 @@ class IndexController extends Controller
 
 结果
 ~~~
-Two1->One1->Three1->Four1->Four2->Three2->One2->Two2
+'abs.start',
+'test3.start',
+'sort1.start',
+'sort2.start',
+'sort3.start',
+'sort3.end',
+'sort2.end',
+'sort1.end',
+'test3.end',
+'abs.end',
 ~~~
