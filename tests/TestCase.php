@@ -11,6 +11,7 @@ namespace Tests;
 use Phalcon\Di\FactoryDefault;
 use PHPUnit\Framework\TestCase as UnitTestCase;
 use Phalcon\Config;
+use Tests\App\SortClient;
 use Xin\Phalcon\Middleware\Manager;
 use Xin\Phalcon\Middleware\Mvc\Dispatcher;
 
@@ -32,6 +33,9 @@ class TestCase extends UnitTestCase
             $middlewareManager->add('test3', \Tests\App\Middleware\Test3Middleware::class);
             $middlewareManager->add('abs', \Tests\App\Middleware\AbstractMiddleware::class);
             $middlewareManager->add('second', \Tests\App\Middleware\SecondMiddleware::class);
+            $middlewareManager->add('sort1', \Tests\App\Middleware\Sort1Middleware::class);
+            $middlewareManager->add('sort2', \Tests\App\Middleware\Sort2Middleware::class);
+            $middlewareManager->add('sort3', \Tests\App\Middleware\Sort3Middleware::class);
 
             return $middlewareManager;
         });
@@ -49,5 +53,7 @@ class TestCase extends UnitTestCase
         $this->dispatcher = $di->getShared('dispatcher');
 
         FactoryDefault::setDefault($di);
+
+        SortClient::getInstance()->flush();
     }
 }

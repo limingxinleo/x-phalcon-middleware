@@ -9,17 +9,16 @@
 namespace Tests\App\Middleware;
 
 use Closure;
-use Phalcon\Di\FactoryDefault;
 use Tests\App\SortClient;
 use Xin\Phalcon\Middleware\Middleware;
 
-class AbstractMiddleware extends Middleware
+class Sort1Middleware extends Middleware
 {
     public function handle($request, Closure $next)
     {
-        SortClient::getInstance()->start('abs');
-        $response = $next($request);
-        SortClient::getInstance()->end('abs');
-        return $response;
+        SortClient::getInstance()->start('sort1');
+        $result = $next($request);
+        SortClient::getInstance()->end('sort1');
+        return $result;
     }
 }
