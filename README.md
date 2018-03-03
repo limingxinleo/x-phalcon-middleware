@@ -1,6 +1,8 @@
 # x-phalcon-middleware
 a phalcon middleware component
 
+[![Build Status](https://travis-ci.org/limingxinleo/x-phalcon-middleware.svg?branch=master)](https://travis-ci.org/limingxinleo/x-phalcon-middleware)
+
 ## 感谢
 [https://github.com/shouhuyou/phalcon-midddleware.git](https://github.com/shouhuyou/phalcon-midddleware.git)
 

@@ -14,6 +14,7 @@ use Phalcon\Config;
 use Tests\App\SortClient;
 use Xin\Phalcon\Middleware\Manager;
 use Xin\Phalcon\Middleware\Mvc\Dispatcher;
+use Xin\Phalcon\Middleware\Mvc\Dispatcher71;
 
 class TestCase extends UnitTestCase
 {
@@ -42,7 +43,11 @@ class TestCase extends UnitTestCase
 
         //替换默认的dispatcher
         $di->setShared('dispatcher', function () {
-            $dispatcher = new Dispatcher();
+            if (version_compare(PHP_VERSION, '7.1', '>=')) {
+                $dispatcher = new Dispatcher71();
+            } else {
+                $dispatcher = new Dispatcher();
+            }
             $dispatcher->setDefaultNamespace('Tests\App\Controllers');
 
             return $dispatcher;
