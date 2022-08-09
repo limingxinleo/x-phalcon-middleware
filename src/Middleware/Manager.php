@@ -40,18 +40,23 @@ class Manager extends Injectable
             return;
         }
         if (!empty($options)) {
-            $action = $this->dispatcher->getActionName();
             $append = true;
-            if (isset($options['only'])) {
-                if (!in_array($action, $options['only'])) {
-                    $append = false;
+            $route = $this->router->getMatchedRoute();
+
+            if ($routeName = $route->getName()) {
+                if (isset($options['only'])) {
+                    if (!in_array($routeName, $options['only'])) {
+                        $append = false;
+                    }
+                }
+
+                if (isset($options['except'])) {
+                    if (in_array($routeName, $options['except'])) {
+                        $append = false;
+                    }
                 }
             }
-            if (isset($options['except'])) {
-                if (in_array($action, $options['except'])) {
-                    $append = false;
-                }
-            }
+
             if (!$append) {
                 return;
             }
