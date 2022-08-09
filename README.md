@@ -73,9 +73,28 @@ class Aaa extends Middleware
 ~~~php
 <?php
 namespace Tests\App\Controllers;
+class Controller extends \Phalcon\Mvc\Controller
+{
+    public function onConstruct()
+    {
+        /**
+         * 过滤掉登陆页面的中间件
+         *
+         */
+        $this->middleware->set([
+            'adminAuth'
+        ],[
+            'except' => [
+                'admin.auth.index',
+                'admin.auth.login'
+            ]
+        ]);
+    }
+}
 
-use Phalcon\Mvc\Controller;
 
+<?php
+namespace Tests\App\Controllers;
 class IndexController extends Controller
 {
     public function indexAction()
